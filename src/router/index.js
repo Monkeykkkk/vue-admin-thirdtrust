@@ -105,12 +105,13 @@ export const constantRoutes = [
         component: () => import('@/views/nested/menu1/index'), // Parent router-view
         name: 'Menu1',
         meta: { title: 'Menu1' },
+        alwaysShow: true,
         children: [
           {
             path: 'menu1-1',
             component: () => import('@/views/nested/menu1/menu1-1'),
             name: 'Menu1-1',
-            meta: { title: 'Menu1-1' }
+            meta: { title: 'titleMenu1-1' }
           },
           {
             path: 'menu1-2',
@@ -141,10 +142,19 @@ export const constantRoutes = [
         ]
       },
       {
-        path: 'menu2',
+        path: 'Pmenu2',
         component: () => import('@/views/nested/menu2/index'),
-        name: 'Menu2',
-        meta: { title: 'menu2' }
+        name: 'nameMenu2',
+        alwaysShow: true,
+        meta: { title: 'titleMenu2' },
+        children: [
+          {
+            path: 'Pmenu2-1',
+            component: () => import('@/views/nested/menu1/menu1-1'),
+            name: 'nameMenu2-1',
+            meta: { title: 'titlemenu2-1' }
+          }
+        ]
       }
     ]
   },
