@@ -46,12 +46,12 @@ export const constantRoutes = [
   {
     path: '/',
     component: Layout,
-    redirect: '/dashboard',
+    redirect: '/home',
     children: [{
-      path: 'dashboard',
-      name: 'Dashboard',
+      path: 'home',
+      name: 'Home',
       component: () => import('@/views/dashboard/index'),
-      meta: { title: 'Dashboard', icon: 'dashboard' }
+      meta: { title: 'Home', icon: 'dashboard' }
     }]
   },
 
@@ -80,12 +80,15 @@ export const constantRoutes = [
   {
     path: '/form',
     component: Layout,
+    alwaysShow: true,
+    meta: { title: '账号关联服务', icon: 'form'},
+    redirect: '/form/index',
     children: [
       {
         path: 'index',
-        name: 'Form',
+        name: 'thirdtrust',
         component: () => import('@/views/form/index'),
-        meta: { title: 'Form', icon: 'form' }
+        meta: { title: '绑定关系查询', icon: 'form' },
       }
     ]
   },
@@ -151,7 +154,7 @@ export const constantRoutes = [
           {
             path: 'Pmenu2-1',
             component: () => import('@/views/nested/menu1/menu1-1'),
-            name: 'nameMenu2-1',
+            name: 'nameMenu2-1111',
             meta: { title: 'titlemenu2-1' }
           }
         ]
