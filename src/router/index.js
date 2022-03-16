@@ -59,27 +59,18 @@ export const constantRoutes = [
     path: '/thirdtrust',
     component: Layout,
     alwaysShow: true,
-    meta: { title: '账号关联服务', icon: 'form'},
+    meta: { title: '账号关联服务', icon: 'form' },
     redirect: '/thirdtrust/index',
     children: [
       {
         path: 'index',
         name: 'thirdtrust',
         component: () => import('@/views/form/index'),
-        meta: { title: '绑定关系查询', icon: 'form' },
+        meta: { title: '绑定关系查询', icon: 'form' }
       }
     ]
   },
-  {
-    path: 'external-link',
-    component: Layout,
-    children: [
-      {
-        path: 'http://ssa.jd.com/sso/login',
-        meta: { title: 'External Link', icon: 'link' }
-      }
-    ]
-  },
+
   // 404 page must be placed at the end !!!
   { path: '*', redirect: '/404', hidden: true }
 ]
