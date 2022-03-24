@@ -4,7 +4,11 @@
     <el-form ref="data" label-width="120px">
       <el-form-item label="业务类型:">
         <el-select v-model="selectValue" placeholder="请选择你们的业务" filterable>
-          <el-option v-for="v in types" :value="v.from" :key="v.index">{{ v.info }}</el-option>
+          <el-option 
+            v-for="v in types" 
+            :label="v.info" 
+            :value="v.from" 
+            :key="v.index" />
         </el-select>
         <el-button @click="isAddThird = !isAddThird" type="primary">添加业务类型</el-button>
       </el-form-item>
