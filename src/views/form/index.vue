@@ -30,15 +30,15 @@
       <el-form-item label="绑定关系:">
         <el-col :span="3" class="line">账号/手机号/邮箱:</el-col>
         <el-col :span="4">
-          <el-input v-model="mobile" placeholder="请输入账号/手机号/邮箱"/>
+          <el-input v-model="mobile" @keyup.enter.native="Search" placeholder="请输入账号/手机号/邮箱"/>
         </el-col>
         <el-col :span="1" class="line">pin:</el-col>
         <el-col :span="4">
-          <el-input v-model="pin" placeholder="请输入pin" />
+          <el-input v-model="pin" @keyup.enter.native="Search" placeholder="请输入pin" />
         </el-col>
         <el-col :span="1" class="line">xid:</el-col>
         <el-col :span="4">
-          <el-input v-model="xid" placeholder="请输入xid" />
+          <el-input v-model="xid" @keyup.enter.native="Search" placeholder="请输入xid" />
         </el-col>
         <el-col :span="3" class="line">
           <el-button @click="Search" type="primary" class="line">查询</el-button>

@@ -48,7 +48,7 @@ service.interceptors.response.use(
       })
     } else if (res.replyCode !== 0) {
       Message({
-        message: res,
+        message: res.replyMessage,
         type: 'error'
       })
     }
