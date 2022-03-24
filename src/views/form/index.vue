@@ -91,10 +91,9 @@ export default {
       //  当发起get请求之后， 通过 .then 来设置成功的回调函数
       request.get('getAllFromInfo').then((result) => {
         // 通过 result.data 拿到服务器返回的成功的数据
-        console.log(result.data)
-        this.returnValue = result.data.replyMessage;
-        if (result.data.replyCode === 0) {
-          this.types = result.data.replyData;
+        this.returnValue = result.replyMessage;
+        if (result.replyCode === 0) {
+          this.types = result.replyData;
         }
       })
     },
@@ -122,7 +121,7 @@ export default {
       }
       var xid = this.xid.replace(/#/g, '%23');
       request.get(`unbind?xid=${xid}&from=${this.selectValue}&pin=${this.pin}`).then((result) => {
-        this.returnValue = result.data.replyMessage;
+        this.returnValue = result.replyMessage;
         this.pin = '';
         this.xid = '';
         this.isAccessUnbind = false;
@@ -204,11 +203,11 @@ export default {
             return;
           }
           request.get(`getuserinfo?input=${this.mobile}&from=${this.selectValue}`).then((result) => {
-            this.returnValue = result.data.replyMessage;
+            this.returnValue = result.replyMessage;
             if(result.replyCode == 0){
-              this.returnValue += ", xid = " + result.replyData.xid + ", pin = " + result.replyData.pin;
-              this.pin = result.replyData.pin;
-              this.xid = result.replyData.xid;
+              this.returnValue += ", xid = " + result.replyxid + ", pin = " + result.replypin;
+              this.pin = result.replypin;
+              this.xid = result.replyxid;
               this.isAccessUnbind = true;
             } else {
 			        this.isAccessUnbind = false;
@@ -224,8 +223,8 @@ export default {
       request.get(`queryBindInfoByPin?pin=${this.pin}&from=${this.selectValue}`).then((result) => {
         this.returnValue = result.replyMessage;
         if(result.replyCode == 0){
-          this.returnValue += ", xid = " + result.replyData.xid;
-          this.xid = result.replyData.xid;
+          this.returnValue += ", xid = " + result.replyxid;
+          this.xid = result.replyxid;
           this.isAccessUnbind = true;
         } else {
           this.isAccessUnbind = false;
@@ -241,8 +240,8 @@ export default {
       request.get(`mapping?xid=${this.xid}&from=${this.selectValue}`).then((result) => {
         this.returnValue = result.replyMessage;
         if(result.replyCode == 0){
-          this.returnValue += ", pin = " + result.replyData.pin;
-          this.pin = result.replyData.pin;
+          this.returnValue += ", pin = " + result.replypin;
+          this.pin = result.replypin;
           this.isAccessUnbind = true;
         } else {
           this.isAccessUnbind = false;

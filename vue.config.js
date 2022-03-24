@@ -37,11 +37,12 @@ module.exports = {
       errors: true
     },
     proxy: {                 //设置代理，必须填
-      '/dev_api': {              //设置拦截器  拦截器格式   斜杠+拦截器名字，名字可以自己定
-          target: 'http://localhost:8089',     //代理的目标地址
+      '/api': {              //设置拦截器  拦截器格式   斜杠+拦截器名字，名字可以自己定
+          target: 'http://login.tool.jd.com',     //代理的目标地址
           changeOrigin: true,              //是否设置同源，输入是的
+          logLevel: 'debug',
           pathRewrite: {                   //路径重写
-              '/dev_api': ''                     //选择忽略拦截器里面的单词
+            '/api': '/cgi-bin/tt'
           }
       }
     }

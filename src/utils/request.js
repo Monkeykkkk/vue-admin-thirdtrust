@@ -3,9 +3,10 @@ import { Message } from 'element-ui'
 
 // create an axios instance
 const service = axios.create({
-  baseURL: '/dev-api/', // url = base url + request url
-  // withCredentials: true, // send cookies when cross-domain requests
-  timeout: 5000 // request timeout
+  // baseURL: '/cgi-bin/tt', // url = base url + request url
+  baseURL: '/api', // url = base url + request url
+  withCredentials: true, // send cookies when cross-domain requests
+  timeout: 3000 // request timeout
 })
 
 const LOGIN_AGAIN_REPLY_CODE = 2001;
@@ -36,10 +37,10 @@ service.interceptors.response.use(
    * You can also judge the status by HTTP Status Code
    */
   response => {
-    const res = response.data
-    console.log('response:' + res.replyCode)
+    const res = response.data;
+    console.log('response:' + JSON.stringify(res));
     if (res.replyCode === LOGIN_AGAIN_REPLY_CODE) {
-      window.location.href = 'http://ssa.jd.com/sso/login?ReturnUrl=' + encodeURIComponent(window.location.href)
+      window.location.href = 'http://ssa.jd.com/sso/login?ReturnUrl=' + encodeURIComponent('http://login.tool.jd.com');
     } else if (res.replyCode === NO_RIGHT_ACCESS_SYSTEM) {
       Message({
         message: '权限不足，请联系管理员添加。',
