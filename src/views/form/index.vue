@@ -4,7 +4,7 @@
     <el-form ref="data" label-width="120px">
       <el-form-item label="业务类型:">
         <el-select v-model="selectValue" placeholder="请选择你们的业务" filterable>
-          <el-option v-for="v in types" :value="v" :key="v.index">{{ v }}</el-option>
+          <el-option v-for="v in types" :value="v.from" :key="v.index">{{ v.info }}</el-option>
         </el-select>
         <el-button @click="isAddThird = !isAddThird" type="primary">添加业务类型</el-button>
       </el-form-item>
@@ -12,11 +12,11 @@
       <el-form-item label= "添加业务:" v-show="isAddThird">
         <el-col :span="1" class="line">from:</el-col>
         <el-col :span="3">
-          <el-input label="from" v-model="from" placeholder="请输入from值"/>
+          <el-input v-model="from" placeholder="请输入from值"/>
         </el-col>
         <el-col :span="2" class="line">中文含义:</el-col>
         <el-col :span="4">
-          <el-input label="from" v-model="means" placeholder="请输入业务方名称" />
+          <el-input v-model="means" placeholder="请输入业务方名称" />
         </el-col>
         <el-col :span="3" class="line">
           <el-button @click="AddFrom" type="primary" class="line">添加</el-button>
@@ -26,15 +26,15 @@
       <el-form-item label="绑定关系:">
         <el-col :span="3" class="line">账号/手机号/邮箱:</el-col>
         <el-col :span="4">
-          <el-input label="from" v-model="mobile" placeholder="请输入账号/手机号/邮箱"/>
+          <el-input v-model="mobile" placeholder="请输入账号/手机号/邮箱"/>
         </el-col>
         <el-col :span="1" class="line">pin:</el-col>
         <el-col :span="4">
-          <el-input label="from" v-model="pin" placeholder="请输入pin" />
+          <el-input v-model="pin" placeholder="请输入pin" />
         </el-col>
         <el-col :span="1" class="line">xid:</el-col>
         <el-col :span="4">
-          <el-input label="from" v-model="xid" placeholder="请输入xid" />
+          <el-input v-model="xid" placeholder="请输入xid" />
         </el-col>
         <el-col :span="3" class="line">
           <el-button @click="Search" type="primary" class="line">查询</el-button>
@@ -44,10 +44,10 @@
         </el-col>
       </el-form-item>
 
-      <el-form-item label="查询结果:" v-if="isAccessUnbind">
+      <el-form-item label="查询结果:">
         <label>
           {{ returnValue }}
-          <el-button @click="Unbind" type="primary" class="line">解绑</el-button>
+          <el-button @click="Unbind"  v-if="isAccessUnbind" type="primary" class="line">解绑</el-button>
         </label>
       </el-form-item>
     </el-form>

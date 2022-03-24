@@ -40,7 +40,7 @@ service.interceptors.response.use(
     const res = response.data;
     console.log('response:' + JSON.stringify(res));
     if (res.replyCode === LOGIN_AGAIN_REPLY_CODE) {
-      window.location.href = 'http://ssa.jd.com/sso/login?ReturnUrl=' + encodeURIComponent('http://login.tool.jd.com');
+     window.location.href = 'http://ssa.jd.com/sso/login?ReturnUrl=' + encodeURIComponent('http://login.tool.jd.com');
     } else if (res.replyCode === NO_RIGHT_ACCESS_SYSTEM) {
       Message({
         message: '权限不足，请联系管理员添加。',
