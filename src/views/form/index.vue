@@ -209,12 +209,12 @@ export default {
           request.get(`getuserinfo?input=${this.mobile}&from=${this.selectValue}`).then((result) => {
             this.returnValue = result.replyMessage;
             if(result.replyCode == 0){
-              this.returnValue += ", xid = " + result.replyxid + ", pin = " + result.replypin;
-              this.pin = result.replypin;
-              this.xid = result.replyxid;
+              this.returnValue += ", xid = " + result.replyData.xid + ", pin = " + result.replyData.pin;
+              this.pin = result.replyData.pin;
+              this.xid = result.replyData.xid;
               this.isAccessUnbind = true;
             } else {
-              this.pin = result.replypin;
+              this.pin = result.replyData.pin;
 			        this.isAccessUnbind = false;
 			      }
           })
@@ -228,8 +228,8 @@ export default {
       request.get(`queryBindInfoByPin?pin=${this.pin}&from=${this.selectValue}`).then((result) => {
         this.returnValue = result.replyMessage;
         if(result.replyCode == 0){
-          this.returnValue += ", xid = " + result.replyxid;
-          this.xid = result.replyxid;
+          this.returnValue += ", xid = " + result.replyData.xid;
+          this.xid = result.replyData.xid;
           this.isAccessUnbind = true;
         } else {
           this.isAccessUnbind = false;
@@ -245,8 +245,8 @@ export default {
       request.get(`mapping?xid=${this.xid}&from=${this.selectValue}`).then((result) => {
         this.returnValue = result.replyMessage;
         if(result.replyCode == 0){
-          this.returnValue += ", pin = " + result.replypin;
-          this.pin = result.replypin;
+          this.returnValue += ", pin = " + result.replyData.pin;
+          this.pin = result.replyData.pin;
           this.isAccessUnbind = true;
         } else {
           this.isAccessUnbind = false;
