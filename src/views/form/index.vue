@@ -75,8 +75,8 @@ export default {
       xid: '',
       returnValue: '',
       isAccessUnbind: false,
-      columns: ['时间','pin','xid','渠道值','操作','操作人'],
-      columnsKey: ['logTime','pin','xid','from','operator','erp'],
+      columns: ['时间', 'pin', 'xid', '渠道值', '操作', '操作人'],
+      columnsKey: ['logTime', 'pin', 'xid', 'from', 'operator', 'erp'],
       loginInfo: [],
       logSearchPin: '',
       logSearchXid: '',
@@ -93,14 +93,14 @@ export default {
         // 通过 result.data 拿到服务器返回的成功的数据
         console.log(result.data)
         this.returnValue = result.data.replyMessage;
-        if(result.data.replyCode == 0){
+        if (result.data.replyCode === 0) {
           this.types = result.data.replyData;
         }
       })
     },
 
     AddFrom() {
-      if (this.from.replace(FILTER_SPACE, "").length != 0 && this.means.replace(FILTER_SPACE, "").length != 0) {
+      if (this.from.replace(FILTER_SPACE, '').length !== 0 && this.means.replace(FILTER_SPACE, '').length !== 0) {
         this.from = parseInt(this.from);
         request.get(`addFromInfo?from=${this.from}&info=${this.means}`);
         this.from = '';
@@ -108,7 +108,7 @@ export default {
         this.isAddThird = false;
         this.GetAllFromType();
       } else {
-        Message ({
+        Message({
           message: '请输入from与中文含义',
           type: 'error'
         })
@@ -116,21 +116,21 @@ export default {
     },
 
     Unbind(){
-      if (this.xid.replace(FILTER_SPACE, "").length == 0 || this.pin.replace(FILTER_SPACE, "").length == 0) {
-        alert("请先查询，再解绑");
+      if (this.xid.replace(FILTER_SPACE, '').length === 0 || this.pin.replace(FILTER_SPACE, '').length === 0) {
+        alert('请先查询，再解绑');
         return;
       }
       var xid = this.xid.replace(/#/g, '%23');
       request.get(`unbind?xid=${xid}&from=${this.selectValue}&pin=${this.pin}`).then((result) => {
         this.returnValue = result.data.replyMessage;
-        this.pin = "";
-        this.xid = "";
+        this.pin = '';
+        this.xid = '';
         this.isAccessUnbind = false;
       })
     },
 
     Bind() {
-      if (this.xid.replace(FILTER_SPACE, "").length == 0 || this.pin.replace(FILTER_SPACE, "").length == 0) {
+      if (this.xid.replace(FILTER_SPACE, '').length == 0 || this.pin.replace(FILTER_SPACE, '').length == 0) {
         Message({
           message: '请输入pin和xid',
           type: 'error'
@@ -199,7 +199,7 @@ export default {
     },
 
     MobileSearch() {
-          if (this.mobile.replace(FILTER_SPACE, "").length == 0) {
+          if (this.mobile.replace(FILTER_SPACE, "").length === 0) {
             alert("请输入手机号/用户名/邮箱");
             return;
           }
@@ -216,39 +216,39 @@ export default {
           })
         },
 
-      PinSearch() {
-        if (this.pin.replace(FILTER_SPACE, "").length == 0) {
-          alert("请输入pin");
-          return;
-        }
-        request.get(`queryBindInfoByPin?pin=${this.pin}&from=${this.selectValue}`).then((result) => {
-          this.returnValue = result.replyMessage;
-          if(result.replyCode == 0){
-            this.returnValue += ", xid = " + result.replyData.xid;
-            this.xid = result.replyData.xid;
-            this.isAccessUnbind = true;
-          } else {
-            this.isAccessUnbind = false;
-          }
-        })
-      },
-
-      XidSearch() {
-        if (this.xid.replace(FILTER_SPACE, "").length == 0) {
-          alert("请输入xid");
-          return;
-        }
-        request.get(`mapping?xid=${this.xid}&from=${this.selectValue}`).then((result) => {
-          this.returnValue = result.replyMessage;
-          if(result.replyCode == 0){
-            this.returnValue += ", pin = " + result.replyData.pin;
-            this.pin = result.replyData.pin;
-            this.isAccessUnbind = true;
-          } else {
-            this.isAccessUnbind = false;
-          }
-        })
+    PinSearch() {
+      if (this.pin.replace(FILTER_SPACE, "").length === 0) {
+        alert("请输入pin");
+        return;
       }
+      request.get(`queryBindInfoByPin?pin=${this.pin}&from=${this.selectValue}`).then((result) => {
+        this.returnValue = result.replyMessage;
+        if(result.replyCode == 0){
+          this.returnValue += ", xid = " + result.replyData.xid;
+          this.xid = result.replyData.xid;
+          this.isAccessUnbind = true;
+        } else {
+          this.isAccessUnbind = false;
+        }
+      })
+    },
+
+    XidSearch() {
+      if (this.xid.replace(FILTER_SPACE, "").length === 0) {
+        alert("请输入xid");
+        return;
+      }
+      request.get(`mapping?xid=${this.xid}&from=${this.selectValue}`).then((result) => {
+        this.returnValue = result.replyMessage;
+        if(result.replyCode == 0){
+          this.returnValue += ", pin = " + result.replyData.pin;
+          this.pin = result.replyData.pin;
+          this.isAccessUnbind = true;
+        } else {
+          this.isAccessUnbind = false;
+        }
+      })
+    }
   }
 }
 </script>

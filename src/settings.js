@@ -1,6 +1,6 @@
 module.exports = {
 
-  title: 'Vue Admin Template',
+  title: 'WLOGIN内部工具',
 
   /**
    * @type {boolean} true | false
