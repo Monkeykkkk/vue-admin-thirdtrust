@@ -214,6 +214,7 @@ export default {
               this.xid = result.replyxid;
               this.isAccessUnbind = true;
             } else {
+              this.pin = result.replypin;
 			        this.isAccessUnbind = false;
 			      }
           })
